@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Detected Labels</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 2rem; }
+    .layout { display: grid; grid-template-columns: 320px 1fr; gap: 1.5rem; align-items: start; }
+    img { max-width: 100%; border-radius: 12px; border: 1px solid #e5e7eb; }
+    .panel { border: 1px solid #e5e7eb; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+    .meta { color: #6b7280; font-size: 0.9rem; margin-bottom: 0.75rem; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 0.6rem 0.5rem; border-bottom: 1px solid #f3f4f6; text-align: left; }
+    th { background: #f9fafb; }
+    .score { font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <h1>Detected Labels</h1>
+  <div class="layout">
+    <div class="panel">
+      <img alt="Uploaded image preview" src="data:<%= mimeType %>;base64,<%= base64 %>" />
+      <div class="meta">
+        <div><strong>File:</strong> <%= filename %></div>
+        <div><strong>Type:</strong> <%= mimeType %></div>
+        <div><strong>Size:</strong> <%= sizeKB %> KB</div>
+      </div>
+      <a href="/">Analyze another image</a>
+    </div>
+    <div class="panel">
+      <% if (!labels || labels.length === 0) { %>
+        <p>No labels were detected.</p>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr><th>Label</th><th>Confidence</th></tr>
+          </thead>
+          <tbody>
+            <% labels.forEach(l => { %>
+              <tr>
+                <td><%= l.description %></td>
+                <td class="score"><%= l.score !== null ? l.score + '%' : '—' %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>
