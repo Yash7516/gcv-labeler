@@ -1,0 +1,9 @@
+runtime: nodejs20
+instance_class: F1
+env: standard
+handlers:
+  - url: /(.*\.(css|js|png|jpg|jpeg|gif|svg|ico))
+    static_files: public/\1
+    upload: public/(.*)
+  - url: /
+    script: auto
