@@ -1,0 +1,20 @@
+{
+  "name": "gcv-labeler",
+  "version": "1.0.0",
+  "description": "Upload an image, call Google Cloud Vision Label Detection, and render results.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development nodemon server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@google-cloud/vision": "^4.3.2",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "morgan": "^1.10.0"
+  }
+}
